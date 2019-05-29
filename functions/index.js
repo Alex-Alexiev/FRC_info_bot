@@ -22,7 +22,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     }
 
     function teamInfo(agent) {
-        return callTBA(7558).then(output => {
+        return callTBA(agent.parameters.number).then(output => {
             let country = output.country;
             agent.add(`they are from ${country}`)
             return Promise.resolve(agent)
@@ -45,7 +45,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
 
 function callTBA(teamNumber) {
     const options = {
-        url: 'https://www.thebluealliance.com/api/v3/team/frc7558',
+        url: 'https://www.thebluealliance.com/api/v3/team/frc'+teamNumber,
         headers:
         {
             'X-TBA-Auth-Key': 'iILYwywnVYDP36CtgFVYcZC97yci1cvRtd94iehC541M9gkMVn6VuFxhtSRBqVHe'
